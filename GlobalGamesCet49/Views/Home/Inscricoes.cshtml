@@ -1,0 +1,80 @@
+﻿@model GlobalGamesCet49.Dados.Entidades.Inscricao
+
+@{
+
+    ViewData["Title"] = "Inscrições";
+}
+
+<section id="main">
+    <div class="container">
+
+        <div class="dark">
+            <h3>Inscrições</h3>
+            <form class="orcamento" asp-action="Inscricoes">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <table>
+                    <tr>
+                        <th>
+                            <label>Nome</label>
+                        </th>
+                        <th>
+                            <input asp-for="Nome" class="form-control" placeholder="Nome" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </th>
+                        <th>
+                            <label>Apelido</label>
+                        </th>
+                        <th>
+                            <input asp-for="Apelido" class="form-control" placeholder="Apelido" />
+                            <span asp-validation-for="Apelido" class="text-danger"></span>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Morada</label>
+                        </th>
+                        <th>
+                            <input asp-for="Morada" class="form-control" placeholder="Morada" />
+                            <span asp-validation-for="Morada" class="text-danger"></span>
+                        </th>
+                        <th>
+                            <label>Localidade</label>
+                        </th>
+                        <th>
+                            <input asp-for="Telemovel" class="form-control" placeholder="Telemovel" />
+                            <span asp-validation-for="Telemovel" class="text-danger"></span>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label>Cartão de Cidadão</label>
+                        </th>
+                        <th>
+                            <input asp-for="CartaoCidadao" class="form-control" placeholder="Cartão de Cidadão" />
+                            <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
+                        </th>
+                        <th>
+                            <label>Data de Nascimento</label>
+                        </th>
+                        <th>
+                            <input asp-for="DNasc" class="form-control" placeholder="Data de Nascimento" />
+                            <span asp-validation-for="DNasc" class="text-danger"></span>
+                        </th>
+                    </tr>
+                </table>
+                <button class="button_1" type="submit">Enviar</button>
+            </form>
+
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts{
+    <script type="text/javascript">
+        document.querySelector('#servicos').className = 'selecionado';
+    </script>
+}

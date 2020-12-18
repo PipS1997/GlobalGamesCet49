@@ -16,14 +16,14 @@ namespace GlobalGamesCet49.Dados.Entidades
 
         public string Morada { get; set; }
 
-        public string Localidade { get; set; }
+        public string Telemovel{ get; set; }
 
         [Display(Name = "Cartão de Cidadão")]
-        public string CC { get; set; }
+        public string CartaoCidadao { get; set; }
 
         [Display(Name = "Data de Nascimento")]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime DataNasc { get; set; }
+        public DateTime DNasc { get; set; }
 
     }
 }
