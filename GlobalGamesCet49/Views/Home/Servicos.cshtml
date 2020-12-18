@@ -1,4 +1,5 @@
-﻿@{
+﻿@model GlobalGamesCet49.Dados.Entidades.PedidoContacto
+@{
     ViewData["Title"] = "Servicos";
 }
 
@@ -33,23 +34,26 @@
         <aside id="sidebar">
             <div class="dark">
                 <h3>Peça um orçamento</h3>
-                <form class="orcamento">
-                    <div>
+                <form class="orcamento" asp-action="Servicos">
+                    <div asp-validation-summary="ModelOnly" class="text-danger">
                         <label>Nome</label><br>
-                        <input type="text" placeholder="Nome" />
+                        <input asp-for="Nome" class="form-control" placeholder="Nome" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
                     </div>
 
                     <div>
                         <label>Email</label><br>
-                        <input type="email" placeholder="Endereço de email" />
+                        <input asp-for="Email" class="form-control" placeholder="Endereço de email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div>
                         <label>Mensagem</label><br>
-                        <textarea placeholder="Mensagem"></textarea>
+                        <textarea asp-for="Mensagem" class="form-control" placeholder="Mensagem"></textarea>
+                        <span asp-validation-for="Mensagem" class="text-danger"></span>
                     </div>
 
-                    <button class="button_1" type="submit">Enviar</button>
+                    <button class="button_1" type="submit">Enviar</button>   
                 </form>
             </div>
         </aside>

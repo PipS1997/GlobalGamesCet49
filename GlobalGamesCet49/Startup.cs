@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GlobalGamesCet49.Dados.Entidades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using GlobalGamesCet49.Data;
-using GlobalGamesCet49.Dados.Entidades;
 
 namespace GlobalGamesCet49
 {
@@ -22,15 +16,21 @@ namespace GlobalGamesCet49
             Configuration = configuration;
         }
 
+
+
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<DataContext>(cfg =>
+            IServiceCollection serviceCollections = services.AddDbContext<DataContext>(cfg =>
             {
+                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -41,10 +41,9 @@ namespace GlobalGamesCet49
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddDbContext<GlobalGamesCet49Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("GlobalGamesCet49Context")));
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -59,9 +58,13 @@ namespace GlobalGamesCet49
                 app.UseHsts();
             }
 
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+
 
             app.UseMvc(routes =>
             {

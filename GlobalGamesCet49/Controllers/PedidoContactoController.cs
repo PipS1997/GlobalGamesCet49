@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlobalGamesCet49.Dados.Entidades;
-using GlobalGamesCet49.Data;
+
 
 namespace GlobalGamesCet49.Controllers
 {
     public class PedidoContactoController : Controller
     {
-        private readonly GlobalGamesCet49Context _context;
+        private readonly DataContext _context;
 
-        public PedidoContactoController(GlobalGamesCet49Context context)
+        public PedidoContactoController(DataContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace GlobalGamesCet49.Controllers
         // GET: PedidoContacto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PedidoContacto.ToListAsync());
+            return View(await _context.PedidoContactos.ToListAsync());
         }
 
         // GET: PedidoContacto/Details/5
@@ -33,7 +33,7 @@ namespace GlobalGamesCet49.Controllers
                 return NotFound();
             }
 
-            var pedidoContacto = await _context.PedidoContacto
+            var pedidoContacto = await _context.PedidoContactos
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedidoContacto == null)
             {
@@ -73,7 +73,7 @@ namespace GlobalGamesCet49.Controllers
                 return NotFound();
             }
 
-            var pedidoContacto = await _context.PedidoContacto.FindAsync(id);
+            var pedidoContacto = await _context.PedidoContactos.FindAsync(id);
             if (pedidoContacto == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace GlobalGamesCet49.Controllers
                 return NotFound();
             }
 
-            var pedidoContacto = await _context.PedidoContacto
+            var pedidoContacto = await _context.PedidoContactos
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedidoContacto == null)
             {
@@ -139,15 +139,15 @@ namespace GlobalGamesCet49.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pedidoContacto = await _context.PedidoContacto.FindAsync(id);
-            _context.PedidoContacto.Remove(pedidoContacto);
+            var pedidoContacto = await _context.PedidoContactos.FindAsync(id);
+            _context.PedidoContactos.Remove(pedidoContacto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PedidoContactoExists(int id)
         {
-            return _context.PedidoContacto.Any(e => e.Id == id);
+            return _context.PedidoContactos.Any(e => e.Id == id);
         }
     }
 }
