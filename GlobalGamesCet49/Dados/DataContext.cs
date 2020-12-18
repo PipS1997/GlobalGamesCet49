@@ -10,6 +10,7 @@ namespace GlobalGamesCet49.Dados.Entidades
     {
 
         public DbSet<PedidoContacto> PedidoContactos { get; set; }
+        public DbSet<Inscricao> Inscricoes { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
