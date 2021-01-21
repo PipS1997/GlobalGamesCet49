@@ -1,4 +1,5 @@
-﻿using GlobalGamesCet49.Dados.Entidades;
+﻿using GlobalGamesCet49.Dados;
+using GlobalGamesCet49.Dados.Entidades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,8 +17,6 @@ namespace GlobalGamesCet49
             Configuration = configuration;
         }
 
-
-
         public IConfiguration Configuration { get; }
 
 
@@ -25,10 +24,14 @@ namespace GlobalGamesCet49
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IServiceCollection serviceCollections = services.AddDbContext<DataContext>(cfg =>
+            services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
+            
+          
+     
+            services.AddTransient<SeedDB>();
 
 
 

@@ -67,14 +67,23 @@
                 <button class="button_1" type="submit">Enviar</button>
             </form>
 
+            @if (ViewBag.TheResult == true)
+            {
+                <div class="alert alert-success">
+                    <strong>Obrigado!</strong> A sua consulta foi enviada.
+                </div>
+
+
+            }
+
+            </div>
+
 
         </div>
-
-    </div>
 </section>
 
 @section Scripts{
     <script type="text/javascript">
-        document.querySelector('#servicos').className = 'selecionado';
+        document.querySelector('#inscricoes').className = 'selecionado';
     </script>
 }

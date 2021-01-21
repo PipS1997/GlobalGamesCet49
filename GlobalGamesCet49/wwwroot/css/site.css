@@ -77,7 +77,7 @@ header {
         margin-top: 10px;
     }
 
-    header .destaque, header .selecionado a {
+    header .destaque, header .selecionado a #inscricoes {
         color: #e8491d;
         font-weight: bold;
     }
@@ -89,11 +89,11 @@ header {
 
 /*Showcase*/
 
-#showcase {
-    min-height: 400px;
-    background: url(../images/showcase.jpg) no-repeat 0 -400px;
-    text-align: center;
-    color: #fff;
+   #showcase {
+       min-height: 400px;
+       background: url(../images/showcase.jpg) no-repeat 0 -400px;
+       text-align: center;
+       color: #fff;
 }
 
     #showcase h1 {
@@ -162,19 +162,41 @@ article#main-col {
 
 /*Página Serviços*/
 
-ul#servicos li {
+/*ul#servicos li {
     list-style: none;
     padding: 20px;
     border: #ccc solid 1px;
     margin-bottom: 5px;
     background: #e6e6e6;
 }
+    */
+
 
 aside#sidebar .orcamento input, aside#sidebar .orcamento textarea {
     width: 90%;
     padding: 5px;
 }
 
+
+/*Página Inscrições*/
+
+#inscricoes {
+    list-style: none;
+    padding: 20px;
+    border: #ccc solid 1px;
+    margin-bottom: 5px;
+    background: #e6e6e6;
+}
+    
+
+/*#inscricoes:hover, ul, li {
+    background: #e6e6e6;
+    padding: 20px;
+    list-style: none;
+    margin-bottom: 5px;
+    border: #ccc solid 1px;
+}
+    */
 
 /*Footer*/
 

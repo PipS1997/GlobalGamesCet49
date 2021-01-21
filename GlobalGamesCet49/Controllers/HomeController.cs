@@ -58,7 +58,7 @@ namespace GlobalGamesCet49.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                ViewBag.TheResult = true;
                 _context.Add(inscricao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

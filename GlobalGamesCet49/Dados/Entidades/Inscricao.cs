@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GlobalGamesCet49.Dados.Entidades
 {
@@ -16,7 +13,7 @@ namespace GlobalGamesCet49.Dados.Entidades
 
         public string Morada { get; set; }
 
-        public string Telemovel{ get; set; }
+        public string Telemovel { get; set; }
 
         [Display(Name = "Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
@@ -25,5 +22,12 @@ namespace GlobalGamesCet49.Dados.Entidades
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime DNasc { get; set; }
 
+        [Display(Name = "Avatar")]
+        public string ImagemUrl { get; set; }
+
     }
+
 }
+    
+
+

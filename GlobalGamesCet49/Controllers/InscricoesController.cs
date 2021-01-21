@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlobalGamesCet49.Dados.Entidades;
+using System.IO;
 
 namespace GlobalGamesCet49.Controllers
 {
@@ -53,7 +54,7 @@ namespace GlobalGamesCet49.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc")] Inscricao inscricao)
+        public async Task<IActionResult>Create([Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc,ImageFile")] Inscricao inscricao)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,9 @@ namespace GlobalGamesCet49.Controllers
             }
             return View(inscricao);
         }
+
+
+
 
         // GET: Inscricoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
