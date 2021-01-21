@@ -22,8 +22,10 @@ namespace GlobalGamesCet49.Dados.Entidades
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime DNasc { get; set; }
 
-        [Display(Name = "Avatar")]
+        [Display(Name = "Foto")]
         public string ImagemUrl { get; set; }
+
+        public User User { get; set; }
 
     }
 

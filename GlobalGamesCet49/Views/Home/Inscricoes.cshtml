@@ -1,4 +1,4 @@
-﻿@model GlobalGamesCet49.Dados.Entidades.Inscricao
+﻿@model GlobalGamesCet49.Models.InscricaoViewModel
 
 @{
 
@@ -10,7 +10,7 @@
 
         <div class="dark">
             <h3>Inscrições</h3>
-            <form class="orcamento" asp-action="Inscricoes">
+            <form class="orcamento" asp-action="Inscricoes" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <table>
                     <tr>
@@ -62,7 +62,17 @@
                             <input asp-for="DNasc" class="form-control" placeholder="Data de Nascimento" />
                             <span asp-validation-for="DNasc" class="text-danger"></span>
                         </th>
-                    </tr>
+
+                        <tr>
+                            <th>
+                                <label asp-for="FicheiroImagem" class="control-label"></label>
+                            </th>
+                            <th>
+                                <input asp-for="FicheiroImagem" class="form-control" type="file"/>
+                                <span asp-validation-for="FicheiroImagem" class="text-danger"></span>
+                            </th>
+                        
+                        </tr>
                 </table>
                 <button class="button_1" type="submit">Enviar</button>
             </form>

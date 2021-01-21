@@ -3,6 +3,7 @@ using GlobalGamesCet49.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace GlobalGamesCet49.Controllers
 {
@@ -54,16 +55,48 @@ namespace GlobalGamesCet49.Controllers
         // POST: Criação do registo em Inscricoes
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Inscricoes([Bind("Id,Nome,Apelido,Morada,Telemovel,CartaoCidadao,DNasc")] Inscricao inscricao)
+        public async Task<IActionResult> Inscricoes([Bind("Id,Nome,Apelido,Morada,Telemovel,CartaoCidadao,DNasc,FicheiroImagem")] InscricaoViewModel view)
         {
             if (ModelState.IsValid)
             {
                 ViewBag.TheResult = true;
+                var caminho = string.Empty;
+
+                if (view.FicheiroImagem != null && view.FicheiroImagem.Length > 0)
+                {
+                    caminho = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot\\images\\Fotos",
+                        view.FicheiroImagem.FileName);
+
+                    using (var stream = new FileStream(caminho, FileMode.Create))
+                    {
+                        await view.FicheiroImagem.CopyToAsync(stream);
+                    }
+
+                    caminho = $"~/images/Fotos/{view.FicheiroImagem.FileName}";
+                }
+
+                var inscricao = this.ToInscricao(view, caminho);
                 _context.Add(inscricao);
-                await _context.SaveChangesAsync();
+                await this._context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(view);
+        }
+
+        private object ToInscricao(InscricaoViewModel view, string caminho)
+        {
+            return new Inscricao
+            {
+                Id = view.Id,
+                ImagemUrl = caminho,
+                Nome = view.Nome,
+                Apelido = view.Apelido,
+                Morada = view.Morada,
+                CartaoCidadao = view.CartaoCidadao,
+                DNasc = view.DNasc
+            };
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

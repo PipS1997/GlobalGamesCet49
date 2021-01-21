@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlobalGamesCet49.Dados.Entidades;
 using System.IO;
+using GlobalGamesCet49.Helpers;
 
 namespace GlobalGamesCet49.Controllers
 {
     public class InscricoesController : Controller
     {
         private readonly DataContext _context;
+        private readonly IUserHelper userHelper;
 
-        public InscricoesController(DataContext context)
+        public InscricoesController(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            this.userHelper = userHelper;
         }
 
         // GET: Inscricoes
