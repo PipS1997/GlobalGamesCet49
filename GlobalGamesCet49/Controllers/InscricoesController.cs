@@ -54,11 +54,11 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc,FicheiroImagem")] Inscricao inscricao)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Apelido,Morada,Telemovel,CC,DataNasc,FicheiroImagem")] Inscricao inscricao)
         {
             if (ModelState.IsValid)
             {
-                inscricao.User = await this.userHelper.GetUserByEmailAsync("filipeafonso@gmail.com");
+                inscricao.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                 _context.Add(inscricao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -90,7 +90,7 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc")] Inscricao inscricao)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Apelido,Morada,Telemovel,CC,DataNasc")] Inscricao inscricao)
         {
             if (id != inscricao.Id)
             {
@@ -101,7 +101,7 @@
             {
                 try
                 {
-                    inscricao.User = await this.userHelper.GetUserByEmailAsync("filipeafonso@gmail.com");
+                    inscricao.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                     _context.Update(inscricao);
                     await _context.SaveChangesAsync();
                 }

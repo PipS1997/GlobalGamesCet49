@@ -12,7 +12,7 @@ namespace GlobalGamesCet49.Dados
     {
         private readonly DataContext context;
        
-        private readonly Inscricao inscricao;
+        
         private readonly IUserHelper userHelper;
         private Random random;
 
@@ -26,21 +26,19 @@ namespace GlobalGamesCet49.Dados
 
         }
 
-        public Inscricao Inscricao => inscricao;
-
         public async Task SeedAsync()
         {
             await this.context.Database.EnsureCreatedAsync();
 
-            var user = await this.userHelper.GetUserByEmailAsync("filipeafonso@gmail.com");
+            var user = await this.userHelper.GetUserByEmailAsync("admin@gmail.com");
             if(user == null)
             {
                 user = new User
                 {
                     FirstName = "Filipe",
                     LastName = "Afonso",
-                    Email = "filipeafonso@gmail.com",
-                    UserName = "filipeafonso@gmail.com"
+                    Email = "admin@gmail.com",
+                    UserName = "admin@gmail.com"
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456789");
