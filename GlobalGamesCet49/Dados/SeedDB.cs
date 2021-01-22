@@ -26,6 +26,8 @@ namespace GlobalGamesCet49.Dados
 
         }
 
+        public Inscricao Inscricao => inscricao;
+
         public async Task SeedAsync()
         {
             await this.context.Database.EnsureCreatedAsync();
@@ -50,27 +52,28 @@ namespace GlobalGamesCet49.Dados
 
             if (!this.context.Inscricoes.Any())
             {
-                this.AddInscricao("Filipe","Afonso", user);
-                this.AddInscricao("Raquel","Filipa", user);
-                this.AddInscricao("Edir","Amorim", user);
-                this.AddInscricao("Talita","Borges", user);
-                this.AddInscricao("Eduardo","Santos", user);
-                this.AddInscricao("Rodrigo","Vieira", user);
-                this.AddInscricao("Pedro","Macedo", user);
-                this.AddInscricao("Diogo","Silva", user);
+                this.AddSubscriber("Filipe",user);
+                this.AddSubscriber("Raquel",user);
+                this.AddSubscriber("Edir",user);
+                this.AddSubscriber("Talita",user);
+                this.AddSubscriber("Eduardo",user);
+                this.AddSubscriber("Rodrigo",user);
+                this.AddSubscriber("Pedro",user);
+                this.AddSubscriber("Diogo",user);
                 await this.context.SaveChangesAsync();
             }
         }
 
-        private void AddInscricao(string nome, string apelido, User user)
+        private void AddSubscriber(string name, User user)
         {
             this.context.Inscricoes.Add(new Inscricao
             {
-                Nome = nome,
-                Apelido = apelido,
+                Nome = name,
+                Apelido = "",
                 Morada = "",
                 Telemovel = "",
-                CartaoCidadao = ""
+                CartaoCidadao = "",
+               
                 
             });
         }

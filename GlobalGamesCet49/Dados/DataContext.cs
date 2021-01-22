@@ -19,3 +19,5 @@ namespace GlobalGamesCet49.Dados.Entidades
         }
     }
 }
+
+

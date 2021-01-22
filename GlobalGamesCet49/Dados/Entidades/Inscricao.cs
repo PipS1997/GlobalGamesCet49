@@ -23,7 +23,7 @@ namespace GlobalGamesCet49.Dados.Entidades
         public DateTime DNasc { get; set; }
 
         [Display(Name = "Foto")]
-        public string ImagemUrl { get; set; }
+        public string UrlImagem { get; set; }
 
         public User User { get; set; }
 

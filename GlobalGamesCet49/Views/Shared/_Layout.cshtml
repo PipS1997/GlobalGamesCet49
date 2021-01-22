@@ -27,8 +27,20 @@
                     <li id="sobre"><a asp-controller="Home" asp-action="Sobre">Sobre</a></li>
                     <li id="servicos"><a asp-controller="Home" asp-action="Servicos">Serviços</a></li>
                     <li id="inscricoes"><a asp-controller="Home" asp-action="Inscricoes">Inscrições</a></li>
+                   
 
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+ }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+}
+<                </ul>
             </nav>
         </div>
     </header>

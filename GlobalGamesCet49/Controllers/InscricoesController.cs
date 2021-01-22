@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using GlobalGamesCet49.Dados.Entidades;
-using System.IO;
-using GlobalGamesCet49.Helpers;
-
-namespace GlobalGamesCet49.Controllers
+﻿namespace GlobalGamesCet49.Controllers
 {
+
+    using GlobalGamesCet49.Dados.Entidades;
+    using GlobalGamesCet49.Helpers;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class InscricoesController : Controller
     {
         private readonly DataContext _context;
@@ -57,10 +54,11 @@ namespace GlobalGamesCet49.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult>Create([Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc,ImageFile")] Inscricao inscricao)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Apelido,Morada,Localidade,CC,DataNasc,FicheiroImagem")] Inscricao inscricao)
         {
             if (ModelState.IsValid)
             {
+                inscricao.User = await this.userHelper.GetUserByEmailAsync("filipeafonso@gmail.com");
                 _context.Add(inscricao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -103,6 +101,7 @@ namespace GlobalGamesCet49.Controllers
             {
                 try
                 {
+                    inscricao.User = await this.userHelper.GetUserByEmailAsync("filipeafonso@gmail.com");
                     _context.Update(inscricao);
                     await _context.SaveChangesAsync();
                 }

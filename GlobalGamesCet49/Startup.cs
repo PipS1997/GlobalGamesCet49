@@ -82,6 +82,7 @@ namespace GlobalGamesCet49
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
 

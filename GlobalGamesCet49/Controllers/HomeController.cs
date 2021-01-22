@@ -60,24 +60,24 @@ namespace GlobalGamesCet49.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.TheResult = true;
-                var caminho = string.Empty;
+                var path = string.Empty;
 
                 if (view.FicheiroImagem != null && view.FicheiroImagem.Length > 0)
-                {
-                    caminho = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\images\\Fotos",
-                        view.FicheiroImagem.FileName);
+              {
+                    path = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot\\images\\Fotos",
+                    view.FicheiroImagem.FileName);
 
-                    using (var stream = new FileStream(caminho, FileMode.Create))
-                    {
-                        await view.FicheiroImagem.CopyToAsync(stream);
-                    }
+                  using (var stream = new FileStream(path, FileMode.Create))
+                   {
+                      await view.FicheiroImagem.CopyToAsync(stream);
+                   }
 
-                    caminho = $"~/images/Fotos/{view.FicheiroImagem.FileName}";
-                }
+                    path = $"~/images/Fotos/{view.FicheiroImagem.FileName}";
+              }
 
-                var inscricao = this.ToInscricao(view, caminho);
+                var inscricao = this.ToInscricao(view, path);
                 _context.Add(inscricao);
                 await this._context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,12 +85,12 @@ namespace GlobalGamesCet49.Controllers
             return View(view);
         }
 
-        private object ToInscricao(InscricaoViewModel view, string caminho)
+        private object ToInscricao(InscricaoViewModel view, string path)
         {
             return new Inscricao
             {
                 Id = view.Id,
-                ImagemUrl = caminho,
+                UrlImagem = path,
                 Nome = view.Nome,
                 Apelido = view.Apelido,
                 Morada = view.Morada,
