@@ -22,7 +22,7 @@
         // GET: Inscricoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Inscricoes.ToListAsync());
+            return View(await _context.PedidoContactos.ToListAsync());
         }
 
         // GET: Inscricoes/Details/5

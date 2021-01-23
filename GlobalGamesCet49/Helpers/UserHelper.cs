@@ -1,13 +1,10 @@
-﻿using GlobalGamesCet49.Dados.Entidades;
-using GlobalGamesCet49.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GlobalGamesCet49.Helpers
+﻿namespace GlobalGamesCet49.Helpers
 {
+    using GlobalGamesCet49.Dados.Entidades;
+    using GlobalGamesCet49.Models;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+
     public class UserHelper : IUserHelper
     {
 
@@ -20,7 +17,7 @@ namespace GlobalGamesCet49.Helpers
             this.signInManager = signInManager;
         }
 
-        public  async Task<IdentityResult> AddUserAsync(User user, string password)
+        public async Task<IdentityResult> AddUserAsync(User user, string password)
         {
             return await this.userManager.CreateAsync(user, password);
         }
@@ -41,7 +38,7 @@ namespace GlobalGamesCet49.Helpers
                 model.Username,
                 model.Password,
                 model.RememberMe,
-                false); 
+                false);
         }
 
         public async Task LogoutAsync()

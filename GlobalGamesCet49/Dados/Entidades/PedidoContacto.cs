@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GlobalGamesCet49.Dados.Entidades
 {
-    public class PedidoContacto
+    public class PedidoContacto 
     {
         public int Id { get; set; }
 

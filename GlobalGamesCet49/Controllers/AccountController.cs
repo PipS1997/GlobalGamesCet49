@@ -45,11 +45,11 @@ namespace GlobalGamesCet49.Controllers
                         return this.Redirect(this.Request.Query["ReturnUrl"].First());
                     }
 
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Inscricoes");
                 }
             }
 
-            this.ModelState.AddModelError(string.Empty, "ailed to login");
+            this.ModelState.AddModelError(string.Empty, "Failed to login");
             return this.View(model);
         }
             public async Task<IActionResult> Logout()
@@ -82,7 +82,7 @@ namespace GlobalGamesCet49.Controllers
                     var result = await this.userHelper.AddUserAsync(user, model.Password);
                     if (result != IdentityResult.Success)
                     {
-                        this.ModelState.AddModelError(string.Empty, "The user couldn't be created.");
+                        this.ModelState.AddModelError(string.Empty, " Ups ainda não tens um Registo..");
                         return this.View(model);
                     }
 
@@ -93,7 +93,9 @@ namespace GlobalGamesCet49.Controllers
                         Username = model.Username
                     };
 
-                    var result1 = await this.userHelper.AddUserAsync(user, model.Password);
+
+
+                    var result2 = await this.userHelper.AddUserAsync(user, model.Password);
                     if (result != IdentityResult.Success)
                     {
                         this.ModelState.AddModelError(string.Empty, "The user couldn't be created.");
@@ -107,17 +109,17 @@ namespace GlobalGamesCet49.Controllers
                         Username = model.Username
                     };
 
-                    var result2 = await this.userHelper.LoginAsync(loginViewModel);
+                    var result3 = await this.userHelper.LoginAsync(loginViewModel);
 
                     if (result2.Succeeded)
                     {
                         return this.RedirectToAction("Index", "Home");
                     }
 
-                    this.ModelState.AddModelError(string.Empty, "The user couldn't be login.");
+                    this.ModelState.AddModelError(string.Empty, "Não tem idade suficiente.");
                 }
 
-                this.ModelState.AddModelError(string.Empty, "The username is already registered.");
+                this.ModelState.AddModelError(string.Empty, "Utilizador já existente.");
             }
 
             return this.View(model);
@@ -147,7 +149,7 @@ namespace GlobalGamesCet49.Controllers
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "User not found.");
+                    this.ModelState.AddModelError(string.Empty, "Utilizador não encontrado.");
                 }
             }
 
@@ -179,7 +181,7 @@ namespace GlobalGamesCet49.Controllers
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "User no found.");
+                    this.ModelState.AddModelError(string.Empty, "Utilizador não encontrado.");
                 }
             }
 

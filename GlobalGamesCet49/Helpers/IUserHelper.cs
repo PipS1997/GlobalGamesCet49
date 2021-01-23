@@ -1,13 +1,10 @@
-﻿using GlobalGamesCet49.Dados.Entidades;
-using GlobalGamesCet49.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GlobalGamesCet49.Helpers
+﻿namespace GlobalGamesCet49.Helpers
 {
+    using GlobalGamesCet49.Dados.Entidades;
+    using GlobalGamesCet49.Models;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+
     public interface IUserHelper
     {
         Task<User> GetUserByEmailAsync(string email);

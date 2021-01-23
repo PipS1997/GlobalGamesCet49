@@ -2,7 +2,6 @@
 using GlobalGamesCet49.Helpers;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +10,8 @@ namespace GlobalGamesCet49.Dados
     public class SeedDB
     {
         private readonly DataContext context;
-       
-        
         private readonly IUserHelper userHelper;
-        private Random random;
+  
 
 
         public SeedDB(DataContext context, IUserHelper userHelper)
@@ -22,7 +19,7 @@ namespace GlobalGamesCet49.Dados
 
             this.context = context;
             this.userHelper = userHelper;
-            this.random = new Random();
+           
 
         }
 
@@ -31,7 +28,7 @@ namespace GlobalGamesCet49.Dados
             await this.context.Database.EnsureCreatedAsync();
 
             var user = await this.userHelper.GetUserByEmailAsync("admin@gmail.com");
-            if(user == null)
+            if (user == null)
             {
                 user = new User
                 {
@@ -42,7 +39,7 @@ namespace GlobalGamesCet49.Dados
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456789");
-                if(result != IdentityResult.Success)
+                if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("Não foi possível criar o usuário no semeador");
                 }
@@ -50,30 +47,27 @@ namespace GlobalGamesCet49.Dados
 
             if (!this.context.Inscricoes.Any())
             {
-                this.AddSubscriber("Filipe",user);
-                this.AddSubscriber("Raquel",user);
-                this.AddSubscriber("Edir",user);
-                this.AddSubscriber("Talita",user);
-                this.AddSubscriber("Eduardo",user);
-                this.AddSubscriber("Rodrigo",user);
-                this.AddSubscriber("Pedro",user);
-                this.AddSubscriber("Diogo",user);
+                this.AddSubscribe("Filipe Afonso", user);
+                this.AddSubscribe("Raquel Filipa", user);
+                this.AddSubscribe("Edir Amorim", user);
+                this.AddSubscribe("Sofia Correia", user);
+                this.AddSubscribe("Carolina Abreu", user);
+                this.AddSubscribe("Rodrigo Vieira",  user);
+                this.AddSubscribe("Pedro Santos",  user);
+                this.AddSubscribe("Diogo Macedo", user);
                 await this.context.SaveChangesAsync();
             }
         }
 
-        private void AddSubscriber(string name, User user)
+        private void AddSubscribe(string name, User user)
         {
             this.context.Inscricoes.Add(new Inscricao
             {
+
                 Nome = name,
-                Apelido = "",
-                Morada = "",
-                Telemovel = "",
-                CartaoCidadao = "",
-               
-                
+                User = user,
             });
+
         }
     }
 }
